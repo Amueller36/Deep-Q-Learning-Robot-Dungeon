@@ -18,7 +18,7 @@ class DeepQNetwork(nn.Module):
         self.fc3 = nn.Linear(in_features=256, out_features=128, dtype=T.float32)
         self.fc4 = nn.Linear(in_features=128, out_features=n_actions)
 
-        self.optimizer = optim.Adam(self.parameters(), lr=learning_rate)
+        self.optimizer = optim.RMSprop(self.parameters(), lr=learning_rate)
         self.loss = nn.MSELoss()
         self.device = T.device('cuda:0' if T.cuda.is_available() else 'cpu')
         self.to(self.device)
